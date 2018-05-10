@@ -1,1 +1,1 @@
-# LinuxCourseForCompleteBeginners_imooc
+# LinuxCourseForCompleteBeginners
