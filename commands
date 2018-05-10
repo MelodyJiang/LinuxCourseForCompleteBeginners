@@ -40,3 +40,44 @@ localhost: 主机名
    ##15位：字节 ls -lh (a format which human can read easily) *drwxr-xr-x 18 jiang jiang 4.0K May  8 19:02 solver
 
    #hidden files ls -a：防止误操作
+   
+二、文件处理命令
+
+1. 目录处理命令（类比文件夹概念）
+ # mkdir -p [dir]
+ -p 递归创建（多层目录）
+
+ # cd 
+   cd ~ /cd+enter:进入家目录
+   cd -: 进入上次目录
+   cd ..:回到上级目录
+   cd .:进入当前目录
+   
+   # 相对路径和绝对路径
+     相对路径：比如root用户当前在家目录，cd ../usr/local/src: 参照当前目录进行
+     绝对路径：cd /etc/: 从根目录开始一级一级
+     # tab 目录补全；按两下命令补全
+
+ # pwd: print working dir
+ 
+ # rm
+   -r: recurse
+   -f: force 强制删除**
+   
+ # cp
+   cp [file] [path]: cp agg.mps /home/jiang/ *原名复制； cp agg.mps /home/jiang/mytest *改名复制
+   
+   
+   
+   
+
+2. 文件处理命令
+
+3. 链接命令
+
+
+
+
+
+
+
