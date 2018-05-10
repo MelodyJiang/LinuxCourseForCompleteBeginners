@@ -1,5 +1,42 @@
+记号说明：*表示举例，#表示补充说明
+
+一、命令基本格式
+
+1. 起始符
 [root@localhost~]#
 root: 当前登录用户名
 localhost: 主机名
 ~：当前所在目录（家目录）
 #：管理员用户提示符（普通用户提示符为$）
+
+2. cmd [opt] [arg]
+*简化选项和完全选项：如 -a  --all
+
+3. ls [arg] [dir]
+   -a: all files (including hidden files)
+   -l: 显示详细信息
+   -d: 查看目录属性  
+   -h: 人性化显示
+   -i: 显示inode, 文件的ID号
+   
+   #ls -l显示详细信息解读： drwxr-xr-x 18 jiang jiang 4096 May  8 19:02 solver
+   ##第1位：文件类型(ls -l可见)：按照权限区分，共7种，常见的有如下3种
+   - file
+   d dir
+   l soft link
+   
+   ##第2-10位：
+   用户组：相同权限的一组用户
+   权限: r read; w write; x excute
+   9位含义：前三位代表（文件）所有者权限，中间三位为（文件）所属组权限，最后三位代表其他人
+   *rw-r--r--: 文件所有者可以读、写；所属组可以读；其他人可以读
+   
+   ##第11位：“.” ACL权限 
+   
+   ##第12位：引用计数
+   
+   ##13，14位：所有者，所属组
+   
+   ##15位：字节 ls -lh (a format which human can read easily) *drwxr-xr-x 18 jiang jiang 4.0K May  8 19:02 solver
+
+   #hidden files ls -a：防止误操作
