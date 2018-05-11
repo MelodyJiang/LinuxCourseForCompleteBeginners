@@ -114,6 +114,82 @@ localhost: 主机名
       修改软链接，源文件改变
       软链接文件本身的权限为wrxwrxwrx，但最终权限取决于源文件
       源文件一定要写绝对路径，除非两个文件都在当前目录下
+ 
+三、文件搜索命令
+
+ # locate [文件名]
+   * 在后台数据库/var/lib/mlocate中搜索，该数据库每天更新一次，因而新建文件找不到
+   * updatedb 更新数据库 （不同系统可能名字不同，centOS叫mlocate）
+   * 速度很快，不需要遍历整个目录
+   * 功能单一：只能按照文件名搜索
+   * 配置文件：/etc/updatedb.conf  
+     PRUNEFS = 规定搜索限制，包括不搜索的文件系统、文件类型和路径
+  
+ # 命令的搜索命令whereis，which 返回命令所在位置
+   # whereis
+     -b 只查找可执行文件
+     -m 只查找帮助文件
+   # which
+     * 如有别名，可以查看命令的别名
+   * 只能找到外部安装的命令，不能找到shell自带的命令。比如 cd
+   
+ *** PATH环境变量
+  * 定义系统搜索命令的路径 
+    linux中要执行一个可执行文件，需要该命令的绝对路径，但这会很不方便，因而出现了环境变量。
+    # echo $PATH
+      /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+     会从以上路径（以：分隔）寻找命令；若以上路径都没找到，则认为命令不存在
+     故而系统命令，比如ls可以不打绝对路径即可执行；自己写的程序需要放入PATH搜索路径中，否则应该使用绝对路径去执行程序
+     * windows中也有类似的设置，系统属性 —> 高级设置 —> 环境变量
+ 
+ # find [搜索范围] [搜索条件] 
+   * 整个根目录遍历，较慢
+   * 非常强大，功能多
+   * find / -name install.log：搜索根目录下名为install.log的文件
+   * 应该避免大范围搜索，会非常耗费系统资源
+   * find默认搜索是完全匹配，如需要模糊搜索应使用通配符
+     ** 通配符
+        * 匹配多个任意内容  find / -name "install.log*"
+        ? 匹配任意一个字符
+        [] 匹配括号中任意一个字符 find / -name "[mni]nsatll.log"
+    
+    -name 按文件名
+    -iname 不区分大小写
+    -user 按照所有者搜索   find /boot -nouser 可以找到没有所有者的文件：1）可能是内核产生的，如sys proc中的；2）可能是外来的，比如U盘内的数据
+    -mtime 修改文件内容 find /var/log -mtime +10 查找10天前修改的文件
+    -ctime 改变文件属性                      -10 10天内
+    -atime 文件访问时间                       10 10天当天
+    -size 按文件大小 find . -size  25k 查找当前目录下文件大小=25KB的文件 (兆字节M)
+                                 -25k                    <25KB
+                                 +25k                    >25KB
+                     * 若不写单位，默认单位是扇区块，因而必须加单位
+    -inum 按照inode find . -inode 236197
+    -a and, 逻辑与 find /etc -size +20k -a -size -50k
+    -o or, 逻辑或
+                  -exec   {} \;  对搜索执行结果执行操作
+                              find /etc -size +20k -a -size -50k -exec ls -lh {} \;
+                              
+  # grep [arg] 字符串 文件名：在文件中匹配符合条件的字符串
+    -v 取反
+    -i 忽略大小写
+    * grep 包含匹配，与find不同
+    * 如果需要匹配，使用正则表达式匹配
+    * 搜索文件名称，使用通配符，完全匹配
+      搜索文件中的数据，使用正则表达式，包含匹配
+
+四、帮助命令
+ 
+ #
+    
+    
+    
+  
+                              
+    
+    
+   
+   
+   
       
       
       
