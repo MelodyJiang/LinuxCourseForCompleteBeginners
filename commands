@@ -180,7 +180,104 @@ localhost: 主机名
 四、帮助命令
  
  # man [命令名]
-   * 打开帮助文档后，查找 /-d 回车；按n向下一个；按shift向上一个
+   * 打开帮助文档后，比如查找含有“-d”的内容 /-d 回车；按n向下一个；按shift向上一个
+   * man的多个级别 
+      man -f ls 相当于 whatis ls
+      man 1 passwd; man 5 passwd  whereis passwd
+   * 查看所有含某关键字的帮助文档 
+      man -k [cmd] 相当于 apropos [cmd]
+ 
+ # [命令名] --help
+ 
+ # help [cmd] 查看内部自带命令的帮助
+   区分shell命令or外部安装命令 whereis [cmd] 看是否有安装文件
+   * help cd
+ 
+ # info [cmd] 
+   -回车：进入带*标记的子帮助页面
+   -u：返回上层页面
+   -n：进入下一个帮助小节
+   -p：进入上一个帮助小节
+   -q：退出
+
+五、压缩命令
+
+ # .zip 与windows通用的一个格式
+  # zip [压缩文件名] [源文件]
+    zip -r 压缩目录
+  # unzip 解压缩
+  
+ # .gz 
+  # gzip [源文件] 不保留源文件
+    gzip -c 源文件 > 压缩文件 可以保留源文件
+    gzip -r 压缩目录中的所有子文件，但不能压缩目录
+  # gzip -d 解压缩
+    gunzip 解压缩
+ 
+ # .bz2 不能压缩目录
+  # bzip2 -k 压缩并保留源文件
+  # bzip -d
+    bunzip2 解压缩
+    
+ # .tar.gz 
+  # tar -cvf [打包文件名] [源文件]  打包：目录可以先打包再压缩
+            -c: 打包
+            -v: 显示过程
+            -f: 指定打包后的文件名
+  # tar -zcvf [压缩包名] [源文件]
+            -z: 压缩.tar.gz格式
+            
+  # tar -xvf 解打包
+  # tar -zxvf 解压缩.tar.gz
+
+ # .tar.bz2 [压缩包名] [源文件]
+  # tar -jcvf 压缩为.tar.bz2格式
+  # tar -jxvf 解压缩.tar.bz2格式
+ 
+ # -C 解压到指定目录
+ # 可以压缩多个文件，可以压缩到其他目录
+ # tar -ztvf 查看压缩包内容
+ 
+六、关机和重启
+
+ # shutdown 更安全，可以保存当前进程
+   -r 重启 shutdown -r [time] & 后台等到time指定的时间重启
+   -c 取消前一个关机命令
+   -h 关机
+  * 服务器不要远程关机
+ 
+ # 其他关机命令：（不是很安全）
+   halt 
+   poweroff
+   init 0  *0-6表示系统运行级别，0表示关机，6表示重启
+
+ # 其他重启命令：
+   reboot
+   init 6
+
+ # 退出登陆：
+   对linux来说尚可，对windows来说允许登陆的用户很少，一定要退出
+   # logout
+
+七、其他常用命令
+ 
+ # 挂载命令
+   挂载：类比windows中分配盘符
+   
+   # mount 查看系统中已经挂载的设备
+        -a 依据配置文件/etc/fstab的内容，自动挂载 
+   
+   
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
    
    
 
